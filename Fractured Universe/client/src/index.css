@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Sci-fi Palette - Dark & Moody */
+  --background: 224 71% 4%;
+  --foreground: 210 40% 98%;
+  
+  /* Neon Blue Primary */
+  --primary: 196 100% 50%;
+  --primary-foreground: 224 71% 4%;
+  
+  /* Deep Space Slate */
+  --card: 222 47% 10%;
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 222 47% 10%;
+  --popover-foreground: 210 40% 98%;
+  
+  /* UI Accents */
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  
+  --accent: 262 80% 50%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+  --ring: 196 100% 50%;
+  
+  --radius: 0.5rem;
+  
+  /* Fonts */
+  --font-display: 'Oxanium', display;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-family: var(--font-body);
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(20, 30, 60, 0.4) 0%, transparent 60%),
+      linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-wide;
+  }
+}
+
+@layer utilities {
+  .text-shadow-neon {
+    text-shadow: 0 0 10px rgba(var(--primary), 0.5), 0 0 20px rgba(var(--primary), 0.3);
+  }
+  
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.2) 51%,
+      transparent 51%
+    );
+    background-size: 100% 4px;
+    animation: scanline 10s linear infinite;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    opacity: 0.3;
+  }
+
+  @keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+  }
+
+  /* Flash-style animations */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      filter: brightness(1) drop-shadow(0 0 4px currentColor);
+    }
+    50% { 
+      filter: brightness(1.3) drop-shadow(0 0 12px currentColor);
+    }
+  }
+
+  @keyframes planet-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes orbit-ring {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes fleet-thrust {
+    0%, 100% { opacity: 0.6; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  @keyframes radar-sweep {
+    0% { transform: rotate(0deg); opacity: 0.8; }
+    100% { transform: rotate(360deg); opacity: 0.8; }
+  }
+
+  @keyframes selection-ring {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes warp-line {
+    0% { transform: translateX(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  @keyframes resource-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-planet-rotate {
+    animation: planet-rotate 20s linear infinite;
+  }
+
+  .animate-orbit-ring {
+    animation: orbit-ring 8s linear infinite;
+  }
+
+  .animate-fleet-thrust {
+    animation: fleet-thrust 0.3s ease-in-out infinite;
+  }
+
+  .animate-radar-sweep {
+    animation: radar-sweep 4s linear infinite;
+  }
+
+  .animate-selection-ring {
+    animation: selection-ring 1.5s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .animate-resource-pop {
+    animation: resource-pop 0.3s ease-out;
+  }
+
+  /* Star field layers */
+  .starfield {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+  }
+
+  .star-small {
+    width: 1px;
+    height: 1px;
+    opacity: 0.4;
+  }
+
+  .star-medium {
+    width: 2px;
+    height: 2px;
+    opacity: 0.6;
+  }
+
+  .star-large {
+    width: 3px;
+    height: 3px;
+    opacity: 0.8;
+    box-shadow: 0 0 4px white;
+  }
+
+  /* Nebula effects */
+  .nebula {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    opacity: 0.15;
+    animation: nebula-drift 30s ease-in-out infinite alternate;
+  }
+
+  @keyframes nebula-drift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, -20px) scale(1.1); }
+  }
+
+  /* Engine trail particles */
+  .engine-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-fade 0.5s ease-out forwards;
+  }
+
+  @keyframes particle-fade {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+  }
+}
